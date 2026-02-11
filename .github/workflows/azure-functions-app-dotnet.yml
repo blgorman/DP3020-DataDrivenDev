@@ -12,6 +12,9 @@ env:
 
 jobs:
   build-and-deploy:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
     runs-on: windows-latest # For Linux, use ubuntu-latest
     environment: dev
     steps:
