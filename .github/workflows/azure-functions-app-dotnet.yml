@@ -16,6 +16,9 @@ jobs:
       contents: 'read'
       id-token: 'write'
     runs-on: windows-latest # For Linux, use ubuntu-latest
+    defaults:
+      run:
+        working-directory: FunctionAppWithDatabaseAndEFCore
     environment: dev
     steps:
     - name: 'Checkout GitHub Action'
