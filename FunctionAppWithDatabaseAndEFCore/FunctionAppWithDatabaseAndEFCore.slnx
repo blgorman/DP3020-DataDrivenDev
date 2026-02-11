@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="DataLayer/DataLayer.csproj" />
+  <Project Path="FunctionAppWithDatabaseAndEFCore/FunctionAppWithDatabaseAndEFCore.csproj" />
+  <Project Path="Models/Models.csproj" />
+  <Project Path="ServiceLayer/ServiceLayer.csproj" />
+</Solution>
