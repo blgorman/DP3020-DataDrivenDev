@@ -19,11 +19,11 @@ builder.Services
 
 var app = builder.Build();
 
-// using (var scope = app.Services.CreateScope())
-// {
-//     var db = scope.ServiceProvider.GetRequiredService<FunctionAppDbContext>();
-//     db.Database.Migrate();
-// }
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<FunctionAppDbContext>();
+    db.Database.Migrate();
+}
 
 app.Run();
 
