@@ -1,3 +1,4 @@
+using Azure.Identity;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using Microsoft.AspNetCore.Http;
@@ -40,13 +41,14 @@ public class BlobInputHttpTrigger
             return new BadRequestObjectResult("Please provide a 'container' query parameter.");
         }
 
-        var connectionString = Environment.GetEnvironmentVariable("MyImportantStorage");
-        if (string.IsNullOrEmpty(connectionString))
+        var blobServiceUri = Environment.GetEnvironmentVariable("MyImportantStorage__blobServiceUri");
+        if (string.IsNullOrEmpty(blobServiceUri))
         {
             return new StatusCodeResult(StatusCodes.Status500InternalServerError);
         }
 
-        var containerClient = new BlobContainerClient(connectionString, containerName);
+        var blobServiceClient = new BlobServiceClient(new Uri(blobServiceUri), new DefaultAzureCredential());
+        var containerClient = blobServiceClient.GetBlobContainerClient(containerName);
 
         var blobList = await GetBlobDetailsAsync(containerClient);
 

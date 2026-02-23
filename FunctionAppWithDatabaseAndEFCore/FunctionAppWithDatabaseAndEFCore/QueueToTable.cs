@@ -1,4 +1,5 @@
 using Azure.Data.Tables;
+using Azure.Identity;
 using Azure.Storage.Queues.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -41,13 +42,13 @@ public class QueueToTable
 
         _logger.LogInformation("HTTP trigger function processed: {messageText}", requestBody.MessageText);
 
-        var connectionString = Environment.GetEnvironmentVariable("MyImportantStorage");
-        if (string.IsNullOrEmpty(connectionString))
+        var tableServiceUri = Environment.GetEnvironmentVariable("MyImportantStorage__tableServiceUri");
+        if (string.IsNullOrEmpty(tableServiceUri))
         {
             return new StatusCodeResult(StatusCodes.Status500InternalServerError);
         }
 
-        var tableClient = new TableClient(connectionString, "ChatLog");
+        var tableClient = new TableClient(new Uri(tableServiceUri), "ChatLog", new DefaultAzureCredential());
         await tableClient.CreateIfNotExistsAsync();
 
         var entity = new TableEntity("ChatLog", Guid.NewGuid().ToString())
