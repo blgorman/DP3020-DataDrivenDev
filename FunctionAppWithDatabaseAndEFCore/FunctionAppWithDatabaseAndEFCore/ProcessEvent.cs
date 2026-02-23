@@ -2,7 +2,7 @@
 // http://localhost:7071/runtime/webhooks/EventGrid?functionName={functionname}
 
 using System;
-using Azure.Messaging;
+using Azure.Messaging.EventGrid;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 
@@ -18,8 +18,8 @@ public class ProcessEvent
     }
 
     [Function(nameof(ProcessEvent))]
-    public void Run([EventGridTrigger] CloudEvent cloudEvent)
+    public void Run([EventGridTrigger] EventGridEvent cloudEvent)
     {
-        _logger.LogInformation("Event type: {type}, Event subject: {subject}", cloudEvent.Type, cloudEvent.Subject);
+        _logger.LogInformation("Event type: {type}, Event subject: {subject}", cloudEvent.EventType, cloudEvent.Subject);
     }
 }
