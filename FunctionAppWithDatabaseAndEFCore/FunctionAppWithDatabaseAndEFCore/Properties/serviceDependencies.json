@@ -14,6 +14,11 @@
       "type": "cosmosdb",
       "connectionId": "myCosmosAcccount",
       "dynamicId": null
+    },
+    "storage2": {
+      "type": "storage",
+      "connectionId": "MyImportantStorage",
+      "dynamicId": null
     }
   }
 }

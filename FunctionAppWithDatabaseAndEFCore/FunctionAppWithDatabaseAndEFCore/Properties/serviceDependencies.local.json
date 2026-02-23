@@ -19,6 +19,14 @@
       "type": "cosmosdb.container",
       "connectionId": "myCosmosAcccount",
       "dynamicId": null
+    },
+    "storage2": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('serviceConnectorResourceGroupName')]/providers/Microsoft.ServiceLinker/locations/centralus/connectors/MyImportantStorage_DDD980A908, /subscriptions/fc82623b-78a7-48f9-bd97-de4bce56c99c/resourceGroups/rg-function-app-with-database/providers/Microsoft.ServiceLinker/locations/centralus/connectors/MyImportantStorage_DFE3245DAD",
+      "secretStore": "LocalSecretsFile",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/az204fnapplab0220260223",
+      "type": "storage.azure",
+      "connectionId": "MyImportantStorage",
+      "dynamicId": null
     }
   }
 }
